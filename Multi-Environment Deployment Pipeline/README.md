@@ -37,7 +37,7 @@ Developer Push
 ## 📁 Project Structure
 
 ```
-CI-CD-pipelines/
+CI-CD-pipelines/Multi-Environment Deployment Pipeline/
 ├── app/
 │   ├── app.py               # Flask application
 │   ├── requirements.txt     # Python dependencies
