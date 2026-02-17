@@ -1,0 +1,81 @@
+name: Deploy to Development
+
+# Triggers automatically on every push to the dev branch
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  # ─────────────────────────────────────────
+  # JOB 1: Run Tests
+  # ─────────────────────────────────────────
+  test:
+    name:  Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r app/requirements.txt
+
+      - name: Run tests
+        run: |
+          pytest app/tests/ -v
+
+  # ─────────────────────────────────────────
+  # JOB 2: Build & Push Docker Image
+  # ─────────────────────────────────────────
+  build:
+    name:  Build & Push Docker Image
+    runs-on: ubuntu-latest
+    needs: test  # Only runs if tests pass
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/cicd-demo:dev-latest
+
+  # ─────────────────────────────────────────
+  # JOB 3: Deploy to Dev Environment
+  # ─────────────────────────────────────────
+  deploy-dev:
+    name:  Deploy to Dev
+    runs-on: ubuntu-latest
+    needs: build  # Only runs if build passes
+    environment: development
+
+    steps:
+      - name: Deploy to Dev Server
+        run: |
+          echo " Deploying to DEVELOPMENT environment..."
+          echo "Image: ${{ secrets.DOCKER_USERNAME }}/cicd-demo:dev-latest"
+          # Replace this echo with your actual deploy command
+          # e.g: ssh user@dev-server 'docker pull && docker run ...'
+
+      - name: Notify Success
+        run: |
+          echo " Dev deployment successful!"
+          echo "Environment: development"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
