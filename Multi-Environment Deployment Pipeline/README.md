@@ -1,10 +1,10 @@
-# 🚀 Multi-Environment CI/CD Pipeline
+#  Multi-Environment CI/CD Pipeline
 
 A production-ready CI/CD pipeline demonstrating automated testing, Docker containerization, and multi-environment deployments with a manual approval gate for production.
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 Developer Push
@@ -23,7 +23,7 @@ Developer Push
       │ Merge to main
       ▼
 ┌─────────────┐   manual approval    ┌──────────────────────────┐
-│ main branch │ ──────────────────►  │ 🔐 Human Approval Gate   │
+│ main branch │ ──────────────────►  │  Human Approval Gate   │
 └─────────────┘                      └──────────────┬───────────┘
                                                      │ Approved
                                                      ▼
@@ -34,7 +34,7 @@ Developer Push
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 CI-CD-pipelines/Multi-Environment Deployment Pipeline/
@@ -56,7 +56,7 @@ CI-CD-pipelines/Multi-Environment Deployment Pipeline/
 
 ---
 
-## ⚙️ Pipeline Workflows
+##  Pipeline Workflows
 
 ### 1. Development (`dev.yml`)
 - **Trigger:** Push to `dev` branch
@@ -75,17 +75,17 @@ CI-CD-pipelines/Multi-Environment Deployment Pipeline/
 
 ---
 
-## 🔐 Setting Up the Manual Approval Gate
+##  Setting Up the Manual Approval Gate
 
 1. Go to your GitHub repo → **Settings**
 2. Click **Environments** → **New environment** → name it `production`
 3. Enable **Required reviewers**
 4. Add yourself (or your team) as a reviewer
-5. Now every production deploy will pause and send you an email to approve ✅
+5. Now every production deploy will pause and send you an email to approve 
 
 ---
 
-## 🛠️ Prerequisites
+##  Prerequisites
 
 - Docker & Docker Compose installed
 - GitHub account
@@ -93,7 +93,7 @@ CI-CD-pipelines/Multi-Environment Deployment Pipeline/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Run Locally
 
@@ -120,7 +120,7 @@ pytest app/tests/ -v
 
 ---
 
-## 🔑 GitHub Secrets Required
+##  GitHub Secrets Required
 
 Go to **Settings → Secrets and variables → Actions** and add:
 
@@ -131,7 +131,7 @@ Go to **Settings → Secrets and variables → Actions** and add:
 
 ---
 
-## 📡 API Endpoints
+##  API Endpoints
 
 | Endpoint | Method | Description |
 |---|---|---|
@@ -141,7 +141,7 @@ Go to **Settings → Secrets and variables → Actions** and add:
 
 ---
 
-## 🧪 Test Coverage
+##  Test Coverage
 
 - ✅ Home route returns 200 and correct payload
 - ✅ Health endpoint returns healthy status
@@ -149,7 +149,7 @@ Go to **Settings → Secrets and variables → Actions** and add:
 
 ---
 
-## 🔮 What's Next
+##  What's Next
 
 - [ ] Add DevSecOps security scanning (Trivy, GitLeaks)
 - [ ] Add Slack notifications on deploy
@@ -158,7 +158,7 @@ Go to **Settings → Secrets and variables → Actions** and add:
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 **Greatness Awara** — DevOps & Cloud Engineer  
 [LinkedIn](https://www.linkedin.com/in/awara-greatness-1a8b03276/) • [GitHub](https://github.com/greatnessawara)
